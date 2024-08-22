@@ -41,7 +41,7 @@ void ABlockFence::InitFacility() {
 	Damage = 0;
 	CollisionBox->SetBoxExtent(FVector(400, 80, 200));
 	CollisionBox->SetRelativeLocation(FVector(0, 0, 200));
-	HitBox->SetBoxExtent(FVector(400, 50, 200));
+	HitBox->SetBoxExtent(FVector(400, 100, 200));
 	HitBox->SetRelativeLocation(FVector(0, 0, 200));
 
 	SetActorScale3D(FVector(0.5, 0.5, 0.5));
@@ -66,7 +66,7 @@ void ABlockFence::LevelUp() {
 		RepairValue += 2;
 		EnemyNum += 3;
 		Damage += 4.0;
-		if (FacilityLevel == 4) CollisionBox->SetBoxExtent(FVector(400, 100, 200));
+		if (FacilityLevel == 4) CollisionBox->SetBoxExtent(FVector(400, 200, 200));
 
 	} else if (FacilityLevel == 8) {
 		UpCost = 100;
@@ -76,6 +76,6 @@ void ABlockFence::LevelUp() {
 		RepairValue += 10;
 		EnemyNum += 3;
 		Damage += Damage;
-		CollisionBox->SetBoxExtent(FVector(400, 150, 200));
+		CollisionBox->SetBoxExtent(FVector(400, 400, 200));
 	}
 }

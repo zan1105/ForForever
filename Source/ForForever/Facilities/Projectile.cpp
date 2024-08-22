@@ -38,11 +38,11 @@ void AProjectile::InitFacility() {
 	RepairThreshold = 50;
 	RepairValue = 10;
 	EnemyNum = 2;
-	CollisionBox->SetBoxExtent(FVector(200, 200, 100));
-	HitBox->SetBoxExtent(FVector(50, 50, 50));
-	HitBox->SetRelativeLocation(FVector(0, 0, 50));
+	CollisionBox->SetBoxExtent(FVector(800, 800, 400));
+	HitBox->SetBoxExtent(FVector(400, 400, 200));
+	HitBox->SetRelativeLocation(FVector(0, 0, 200));
 
-	SetActorScale3D(FVector(2.0, 2.0, 2.0));
+	SetActorScale3D(FVector(0.5, 0.5, 0.5));
 }
 
 void AProjectile::LevelUp() {
@@ -62,7 +62,7 @@ void AProjectile::LevelUp() {
 		Period -= 0.5;
 		RepairValue += 2;
 		EnemyNum++;
-		if (FacilityLevel == 4) SetActorScale3D(FVector(3.0, 3.0, 3.0));
+		if (FacilityLevel == 4) CollisionBox->SetBoxExtent(FVector(1000, 1000, 400));
 
 	} else if (FacilityLevel == 8) {
 		UpCost = 100;
@@ -71,6 +71,6 @@ void AProjectile::LevelUp() {
 		Period -= 0.5;
 		RepairValue += 10;
 		EnemyNum++;
-		SetActorScale3D(FVector(4.0, 4.0, 4.0));
+		CollisionBox->SetBoxExtent(FVector(1200, 1200, 400));
 	}
 }
