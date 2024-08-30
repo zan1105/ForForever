@@ -24,10 +24,6 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "ForForever|Facility")
 	class UBoxComponent *CollisionBox;
 
-	// 受击碰撞体
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "ForForever|Facility")
-	class UBoxComponent *HitBox;
-
 	// 骨骼网格体对象
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "ForForever|Facility")
 	class USkeletalMeshComponent *SkeletalMesh;
@@ -40,27 +36,26 @@ protected:
 	uint8   FacilityLevel;   // 设施等级
 	uint8   Price;           // 设施建造成本
 	uint8   UpCost;          // 设施升级成本
-	double  Durability;      // 设施耐久度
-	double  Attack;          // 设施攻击力系数
-	double  Injury;          // 设施承伤系数
-	double  Period;          // 设施动作周期
+	float   Durability;      // 设施耐久度
+	float   Injury;          // 设施承伤系数
+	float   Period;          // 设施动作周期
 	bool    AutoRepair;      // 设施自动修复
-	double  RepairThreshold; // 设施修复阈值
-	double  RepairValue;     // 设施修复量
+	float   RepairThreshold; // 设施修复阈值
+	float   RepairValue;     // 设施修复量
 	uint8   EnemyNum;        // 可攻击设施的敌人数量期望值
 
-	virtual void InitFacility();      // 初始化设施
-	virtual void OnPeriodAction();    // 执行周期动作
-	virtual void OnFirstAbility() {}  // 释放第一技能，3 级开启
-	virtual void OnSecondAbility() {} // 释放第二技能，9 级开启
+	virtual void InitFacility();   // 初始化设施
+	virtual void OnPeriodAction(); // 执行周期动作
 
 	void Repair(); // 修复设施
 
 public:
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	virtual void Tick(float DeltaTime) override; // 每帧调用
 
 	virtual void LevelUp() {} // 升级设施
+
+	UFUNCTION(BlueprintCallable, Category = "ForForever|Facility")
+	virtual void OnTakeDamage(AActor *Damager, float Damage); // 受到伤害
 
 	// Getter
 	UFUNCTION(BlueprintCallable, Category = "ForForever|Facility")
@@ -76,25 +71,22 @@ public:
 	uint8 GetUpCost() const { return UpCost; }
 
 	UFUNCTION(BlueprintCallable, Category = "ForForever|Facility")
-	double GetDurability() const { return Durability; }
+	float GetDurability() const { return Durability; }
 
 	UFUNCTION(BlueprintCallable, Category = "ForForever|Facility")
-	double GetAttack() const { return Attack; }
+	float GetInjury() const { return Injury; }
 
 	UFUNCTION(BlueprintCallable, Category = "ForForever|Facility")
-	double GetInjury() const { return Injury; }
-
-	UFUNCTION(BlueprintCallable, Category = "ForForever|Facility")
-	double GetPeriod() const { return Period; }
+	float GetPeriod() const { return Period; }
 
 	UFUNCTION(BlueprintCallable, Category = "ForForever|Facility")
 	bool GetAutoRepair() const { return AutoRepair; }
 
 	UFUNCTION(BlueprintCallable, Category = "ForForever|Facility")
-	double GetRepairThreshold() const { return RepairThreshold; }
+	float GetRepairThreshold() const { return RepairThreshold; }
 
 	UFUNCTION(BlueprintCallable, Category = "ForForever|Facility")
-	double GetRepairValue() const { return RepairValue; }
+	float GetRepairValue() const { return RepairValue; }
 
 	UFUNCTION(BlueprintCallable, Category = "ForForever|Facility")
 	uint8 GetEnemyNum() const { return EnemyNum; }
