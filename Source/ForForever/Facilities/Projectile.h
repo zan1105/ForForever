@@ -18,7 +18,8 @@ public:
 	AProjectile();
 
 protected:
-	virtual void InitFacility() override; // 初始化
+	virtual void InitFacility() override;   // 初始化
+	virtual void OnPeriodAction() override; // 执行周期动作
 
 public:
 	virtual void LevelUp() override; // 升级

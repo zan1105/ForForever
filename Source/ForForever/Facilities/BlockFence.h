@@ -18,14 +18,15 @@ public:
 	ABlockFence();
 
 protected:
-	double Damage; // 伤害
+	float Damage; // 伤害
 
-	virtual void InitFacility() override; // 初始化
+	virtual void InitFacility() override;   // 初始化
+	virtual void OnPeriodAction() override; // 执行周期动作
 
 public:
 	virtual void LevelUp() override; // 升级
 
 	// Getter
 	UFUNCTION(BlueprintCallable, Category = "ForForever|Facility")
-	double GetDamage() const { return Damage; }
+	float GetDamage() const { return Damage; }
 };
